@@ -8,10 +8,6 @@ This repository contains codes and processed files for the manuscript entitled *
 ## Getting started
 Codes for the main experimental analysis are provided in the <code>Models.zip</code> and <code>Experiments</code>folder with instructions included in a readme file inside. All required input files for a demo can be found in the <code><b>Data</b></code> folder zipped and can be extracted using the 7zip tool.   
 
-**Please ignore the following instructions for running the experiments at this point**
-
-To get started, users can download the scripts and run them on their local machines. To run this on the HPC, after connecting to the user's HPC account, install the libraries as suggested in the Getting Started section. The user can run the same code on their HPC server. XXX
-
 ### Installation
 TRUHiC can be downloaded by
 ```
@@ -33,9 +29,11 @@ Pandas 1.2.x, Numpy 1.20.x, SciPy 1.7.x, Matplotlib 3.5.x, statsmodels 0.13.x, s
 Users can download the project repository and start the jupyter lab to experiment with the analysis
 ```
 git clone https://github.com/shilab/TRUHiC.git
-cd XXX
-cd XXX
+cd TRUHiC
+unzip Models.zip
 ```
+
+At this point, the main script (TRUHiC_main.py) and sample command line examples (sbatch-tensorflow.job) will be available to run the model and do evaulation on the demo data.
 
 The <code><b>Data</code></b> folder contains the necessary datasets that are needed for running the main analyses included in our study. A *README* file for the detailed description of each file can be found under the data folder.
 
