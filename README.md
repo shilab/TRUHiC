@@ -33,7 +33,7 @@ cd TRUHiC
 unzip Models.zip
 ```
 
-At this point, the main script (TRUHiC_main.py) and sample command line examples (sbatch-tensorflow.job) will be available to run the model and do evaulation on the demo data.
+At this point, the main script (TRUHiC_main.py) and command line examples (sbatch-tensorflow.job) will be available to run the model and do evaulation on the demo data.
 
 The <code><b>Data</code></b> folder contains the necessary datasets that are needed for running the main analyses included in our study. A *README* file for the detailed description of each file can be found under the data folder.
 
