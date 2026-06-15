@@ -1,4 +1,4 @@
-Welcome to the TRUHiC repository.
+# Welcome to the TRUHiC repository.
 
 Benchmark methods are placed under the "benchmark" directory.
 
