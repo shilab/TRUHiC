@@ -1,0 +1,21 @@
+TRUHiC Data Extraction Guide
+
+The GM12878 dataset is distributed as a multi-part archive:
+
+- GM12878_raw.zip.001
+- GM12878_raw.zip.002
+
+Before extraction, ensure that all archive parts are downloaded and located in the same directory.
+
+Archive password:
+7z0a2n
+
+To extract the dataset, start the extraction from:
+
+GM12878_raw.zip.001
+
+Notes:
+- Do not extract `.002` separately.
+- All archive parts must be present in the same folder.
+- The password is case-sensitive.
+- If extraction fails, verify that all archive parts were downloaded completely.
