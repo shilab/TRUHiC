@@ -1,0 +1,25 @@
+# Experiments
+
+This folder contains scripts used for data preprocessing, Hi-C format conversion, TAD analysis, chromatin loop analysis, and biological validation in the TRUHiC study.
+
+## Files
+
+| File | Description |
+|------|-------------|
+| `raw_data_download_script.sh` | Download raw Hi-C datasets used in the study. |
+| `preprocess_rep.sh` | Preprocess Hi-C data for downstream analyses. |
+| `convert_to_hic_pre_input.py` | Convert predicted contact matrices into Juicer-compatible input format. |
+| `convert_to_hic.sh` | Convert predictions into `.hic` files using Juicer Tools. |
+| `fanc_boundary.sh` | Call TAD boundaries using FAN-C. |
+| `hiccups_loop.sh` | Call chromatin loops using HiCCUPS. |
+| `TAD_jaccard_F1.py` | Compute TAD recovery metrics (Jaccard Index and F1 score). |
+| `Loop_jaccard_F1.py` | Compute chromatin loop recovery metrics (Jaccard Index and F1 score). |
+| `Loop_validate.py` | Validate recovered loops using external genomic annotations (e.g., CTCF peaks). |
+
+## Dependencies
+
+- Python 3
+- Juicer Tools (`juicer_tools_1.22.01.jar`)
+- FAN-C
+
+Please refer to the main repository README for installation instructions, data availability, and complete workflow examples.
