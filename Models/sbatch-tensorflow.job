@@ -1,0 +1,73 @@
+#!/bin/bash
+#======================================================
+#
+# Job script for running a parallel job on a single gpu
+#
+# Submit as follows:
+#
+#======================================================
+
+#======================================================
+# Propagate environment variables to the compute node
+#SBATCH --export=ALL
+#
+# Run in the gpu partition (queue)
+#SBATCH --partition=gpu
+#
+# Total number GPUs for the job
+#SBATCH --gpus=1
+#
+# Number of GPUs to use per node (max 2)
+#SBATCH --gpus-per-node=1
+#
+# Number of CPUs per GPU
+#SBATCH --cpus-per-gpu=2
+#
+# Specify (hard) runtime (HH:MM:SS)
+# SBATCH --time=110:00:00
+#
+# Job name
+#SBATCH --job-name=gpu_tf
+#
+#======================================================
+
+# Load CUDA always
+module load cuda
+
+export PATH=/home/username/miniconda3/bin:$PATH
+source activate tensorflow-gpu
+# change to directory where 'sbatch' was called
+cd ${SLURM_SUBMIT_DIR}
+
+RATIO=16
+DATA_FOLDER=GM12878_raw
+
+SAVE_DIR_RATIO=16
+
+SAVE_DIR=truhic_32_heads_40x40_new_${DATA_FOLDER}_r${SAVE_DIR_RATIO}
+# SAVE_DIR=dfhic_bs128_GM12878_new40x40_raw_r${SAVE_DIR_RATIO}
+
+
+# cmd="srun --gpus 1 python3 ./benchmarks/DFHiC_main.py --mode train --input ./data/40_x_40_new/${DATA_FOLDER} --ratio ${RATIO} --save-dir ./results/${SAVE_DIR} --batch-size-per-gpu 128 --restart-training 1"
+cmd="srun --gpus 1 python3 TRUHiC_main.py --mode train --input ./data/40_x_40_new/${DATA_FOLDER} --ratio ${RATIO} --save-dir ./results/${SAVE_DIR} --batch-size-per-gpu 16 --na-heads 32 --restart-training 1 --lr 0.001" 
+echo "Executing command: $cmd"
+$cmd
+
+mkdir ./results/${SAVE_DIR}/out
+
+RATIO=16
+
+# cmd="srun --gpus 1 python3 ./benchmarks/DFHiC_main.py --mode enhance --input ./data/40_x_40_new/${DATA_FOLDER_TEST}/${RATIO}_ratio/to_predict --ratio ${RATIO} --save-dir ./results/${SAVE_DIR} --batch-size-per-gpu 128"
+cmd="srun --gpus 1 python3 TRUHiC_main.py --mode enhance --input ./data/40_x_40_new/${DATA_FOLDER_TEST}/${RATIO}_ratio/to_predict --ratio ${RATIO} --save-dir ./results/${SAVE_DIR} --batch-size-per-gpu 16"
+echo "Executing command: $cmd"
+$cmd
+
+mv ./results/${SAVE_DIR}/out ./results/${SAVE_DIR}/${DATA_FOLDER_TEST}_preds_from_${SAVE_DIR}
+mkdir ./results/${SAVE_DIR}/out
+
+source activate torch-gpu
+# cmd="srun --gpus 1 python3 ./Evaluate_Metrics_args_cross.py --root_dir ./data/40_x_40_new --cell_line ${DATA_FOLDER} --RATIO $RATIO --pred_dir ./results/${SAVE_DIR}/${DATA_FOLDER_TEST}_preds_from_${SAVE_DIR}" 
+cmd="srun --gpus 1 python3 ./Evaluate_Metrics_args.py --root_dir ./data/40_x_40_new --cell_line ${DATA_FOLDER} --RATIO $RATIO --pred_dir ./results/${SAVE_DIR}/${DATA_FOLDER_TEST}_preds_from_${SAVE_DIR}" 
+echo "Executing command: $cmd"
+$cmd
+

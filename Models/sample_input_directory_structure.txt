@@ -1,0 +1,16 @@
+GM12878_raw
+└── 16_ratio
+    ├── distance_train.npy
+    ├── hr_train.npy
+    ├── lr_train_ratio16.npy
+    └── to_predict
+        ├── hr_test_chr18.npy
+        ├── hr_test_chr19.npy
+        ├── hr_test_chr20.npy
+        ├── hr_test_chr21.npy
+        ├── hr_test_chr22.npy
+        ├── lr_test_chr18_ratio16.npy
+        ├── lr_test_chr19_ratio16.npy
+        ├── lr_test_chr20_ratio16.npy
+        ├── lr_test_chr21_ratio16.npy
+        └── lr_test_chr22_ratio16.npy
