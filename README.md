@@ -61,7 +61,7 @@ Please note that the scripts and workflows provided in this repository are organ
 ## Contact
 We welcome your questions, bug reports, suggestions, requests for additional information, or collaboration interests. Please feel free to reach out to us via the following email addresses and we will respond as soon as possible:  
 :email: Dr. Chong Li:   tun53987@temple.edu or lichong0710@gmail.com (personal email)  
-:email: Dr. Mohammad Erfan Mowlaei:   mohammad.erfan.mowlaei@temple.edu  
+:email: Dr. Mohammad Erfan Mowlaei:   e.mowlaei@temple.edu  
 :email: Dr. Mindy Shi:   mindyshi@temple.edu
 
 ## References
