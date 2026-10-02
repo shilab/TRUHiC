@@ -56,7 +56,7 @@ python3 TRUHiC_main.py --mode enhance --input [path-to-test-data-directory] --ra
 
 4. To evaluate simple visual metrics on the predictions, use the following commands:
 ```
-source activate torch-gpu
+source activate torch-gpu # environment provided under Models directory
 python3 Evaluate_Metrics_args.py --root_dir [path-to-root-directory-containing-cell-lines] --cell_line [cell-line-directory-name] --RATIO [e.g., 16] --pred_dir [path-to-model-saving-directory/out]
 ```
 As an example, if your test data ground truth is placed at the following path: .../40_x_40_new/GM12878/16_ratio
