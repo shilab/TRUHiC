@@ -43,17 +43,33 @@ Pandas 1.2.x, Numpy 1.20.x, SciPy 1.7.x, Matplotlib 3.5.x, statsmodels 0.13.x, s
 ### Quick Start
 After extracting the example dataset and organizing the files according to `Data/sample_input_directory_structure.txt`:
 1. Navigate to the `Models/` directory.
-2. Open `TRUHiC_main.py`.
-3. Update the input and output paths to match your local environment.
-4. Run:
+2. To initiate training the model, run the following command:
 ```
-python TRUHiC_main.py
+python3 TRUHiC_main.py --mode train --input [path-to-data-directory] --ratio [e.g., 16] --save-dir [path-to-model-saving-directory] --batch-size-per-gpu 16 --na-heads 32 --lr 0.001  --restart-training 1
 ```
+- Please note that ```--restart-training 1``` will clean up the saving directory before starting a new training.
+
+3. To perform inference, run the following command:
+```
+python3 TRUHiC_main.py --mode enhance --input [path-to-test-data-directory] --ratio [e.g., 16] --save-dir [path-to-model-saving-directory] --batch-size-per-gpu 32
+```
+
+4. To evaluate simple visual metrics on the predictions, use the following commands:
+```
+source activate torch-gpu
+python3 Evaluate_Metrics_args.py --root_dir [path-to-root-directory-containing-cell-lines] --cell_line [cell-line-directory-name] --RATIO [e.g., 16] --pred_dir [path-to-model-saving-directory/out]
+```
+As an example, if your test data ground truth is placed at the following path: .../40_x_40_new/GM12878/16_ratio
+Then use the following arguments for the above command:
+```
+--root_dir .../40_x_40_new --cell_line GM12878 --RATIO 16
+```
+
 Example SLURM job submission scripts are also provided in:
 ```
 Models/sbatch-tensorflow.job
 ```
-for cluster-based execution
+for cluster-based execution.
 
 ## Reproducibility
 Please note that the scripts and workflows provided in this repository are organized to reproduce the analyses presented in the TRUHiC study. Input file formats and example datasets are included to facilitate replication of the reported results. Users are welcome to run the provided scripts on their own systems and adapt them for use with their own datasets. While the repository has been tested in our computing environment, minor modifications to file paths, software versions, or system-specific configurations may be required when deploying the workflow in different environments. Users wishing to apply TRUHiC to their own datasets may need to update directory paths, input configurations, and environment-specific settings accordingly.
